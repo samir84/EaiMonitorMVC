@@ -43,28 +43,43 @@
 	</definition>
 	
 	<definition name="home" extends="DashboardTemplate"/>
+	
 	<definition name="user" extends="DashboardTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/user.jsp" />
 	</definition>
+	
 	<definition name="projects" extends="DashboardTemplate">
+	 	<put-attribute name="title" value="Projects Overview" />
 		<put-attribute name="body" value="/WEB-INF/views/projects.jsp" />
+		 <put-list-attribute name="javascriptsSpecific">
+			<add-attribute value="/resources/dist/js/projects.js" />
+		</put-list-attribute> 
 	</definition>
+
 	<definition name="projectdetails" extends="DashboardTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/projectdetails.jsp" />
+		<put-attribute name="title" value="Project Detail" />
+		<put-attribute name="body" value="/WEB-INF/views/project_details.jsp" />
+		
+		<put-list-attribute name="javascriptsSpecific">
+			<add-attribute value="/resources/plugins/chartjs/Chart.min.js" />
+			<add-attribute value="/resources/dist/js/projectStatistics.js" />
+			
+		</put-list-attribute> 
+		
 	</definition>
-	<definition name="projectsTable" extends="SimplePageTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/projectsTable.jsp" />
-	</definition>
+
 	<definition name="projectsPlanning" extends="DashboardTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/projectsPlanning.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/projects_planning.jsp" />
 	</definition>
 	
 	<definition name="orders" extends="DashboardTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/orders.jsp" />
 	</definition>
+	
 	<definition name="orderdetails" extends="DashboardTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/orderdetails.jsp" />
 	</definition>
+	
 	<definition name="ordersTable" extends="SimplePageTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/ordersTable.jsp" />
 	</definition>
@@ -72,13 +87,17 @@
 	<definition name="jobs" extends="DashboardTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/jobs.jsp" />
 	</definition>
+	
 	<definition name="jobdetails" extends="DashboardTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/jobdetails.jsp" />
 	</definition>
+	
 	<definition name="jobsTable" extends="SimplePageTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/jobsTable.jsp" />
 	</definition>
+	
 	<definition name="timesheets" extends="DashboardTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/timesheets.jsp" />
 	</definition>
+	
 </tiles-definitions>

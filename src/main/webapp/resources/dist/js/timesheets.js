@@ -1,5 +1,5 @@
 
- var urlFeed = "/eaimonitor/timeSheets.json";
+ var urlFeed = "/eaimonitor/timesheets.json";
 
   initializeTimeSheets(urlFeed);
   
@@ -247,7 +247,7 @@ function showNotifications(){
 }
 
 function refetchEvents(){
-	 $('#calendar').fullCalendar( 'refetchEvents' )
+	 $('#calendar').fullCalendar( 'refetchEvents' );
 }
 function editWeeklyReturn(calEvent){
 	$('select[name=project]').val(calEvent.project.id).change();

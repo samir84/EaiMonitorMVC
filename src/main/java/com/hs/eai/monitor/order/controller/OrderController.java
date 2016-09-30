@@ -23,7 +23,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.hs.eai.monitor.order.model.OrderDetail;
 import com.hs.eai.monitor.order.model.OrderHdr;
-import com.hs.eai.monitor.project.model.ProjectDetails;
 import com.hs.eai.monitor.service.AppUtilsService;
 import com.hs.eai.monitor.service.RestClientService;
 import com.hs.eai.orderoverview.orderjaxb.Order;
@@ -61,7 +60,6 @@ public class OrderController {
 	 * @param OrderId
 	 * @return
 	 */
-	@SuppressWarnings("unused")
 	@RequestMapping(value = "/orders", method = RequestMethod.GET)
 	public String showorders(Model model, @RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "maxResult", required = false) Integer maxResult, HttpServletRequest request) {

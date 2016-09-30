@@ -279,7 +279,7 @@ public class TimeSheetsController {
 
 		return res;
 	}
-	@RequestMapping(value = "/timeSheets.json", method = RequestMethod.GET)
+	@RequestMapping(value = "/timesheets.json", method = RequestMethod.GET)
 	@ResponseBody
 	public String getCalendarData(@RequestParam(value = "start", required = true) String fromDate,
 			@RequestParam(value = "end", required = true) String toDate) {

@@ -163,3 +163,4 @@
 	</section>
 
 </div>
+ <script src="<c:url value="/resources/dist/js/timesheets.js"/>"></script>

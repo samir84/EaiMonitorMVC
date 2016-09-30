@@ -40,6 +40,9 @@ public class RestClientService {
 		this.uriBase = uriBase;
 	}
 
+	public String getRequiredProperty(final String property){
+		return env.getRequiredProperty(property);
+	}
 	public String readUriFromProperty(final String property) {
 
 		return env.getRequiredProperty(uriBase) + env.getRequiredProperty(property);

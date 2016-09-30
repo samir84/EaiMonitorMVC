@@ -1,7 +1,66 @@
+  //Date range picker
+/*$('#myDateRange').popover({
+    placement: 'bottom',
+    title: 'header title',
+    container: 'body',
+    html: true,
+    trigger : 'focus',
+    content: function () {
+
+      var dateRange=$("#dateRange").html();
+      return dateRange;
+    }
+}).on('shown.bs.popover', function () {
+    $('#dateFrom').datetimepicker();
+    $('#datetimepicker2').datetimepicker();
+});*/
 
 
+
+$("#NextWeek").click(function(){
+	var date = moment("25 Sep ,2016", "DD MMM ,YYYY");
+	
+	var nextWeekStartdate = moment().weekday(7).format('DD MMM'); 
+	var nextWeekEnddate = moment().weekday(13).format('DD MMM ,YYYY'); 
+	
+	$("#DateRangePopS").text("Current Week ("+nextWeekStartdate+" - "+nextWeekEnddate+")");
+});
+$("#Previous").click(function(){
+	var date = moment("25 Sep ,2016", "DD MMM ,YYYY");
+	
+	var prevWeekStartdate = moment().weekday(-7).format('DD MMM'); 
+	var prevWeekEnddate = moment().weekday(-1).format('DD MMM ,YYYY'); 
+	
+	$("#DateRangePopS").text("Current Week ("+prevWeekStartdate+" - "+prevWeekEnddate+")");
+})
+
+
+var currentWeekStart = moment().weekday(0).format('DD MMM');
+var currentWeekEnd = moment().weekday(6).format('DD MMM ,YYYY');
+
+$("#DateRangePopS").text("Current Week ("+currentWeekStart+" - "+currentWeekEnd+")");
+  $("#DateRangePopS").popover({
+	        html: true
+	    }).on('shown.bs.popover', function () {
+	        $('#datetimepicker1').datepicker();
+	        $('#datetimepicker2').datepicker();
+	    });
+$('#reservation').daterangepicker();
+$("#select-user").select2();
+$("#select-user").select2()
+.on("select2:select", function (e) {
+    var selected_element = $(e.currentTarget);
+    var select_val = selected_element.val();
+    console.log("selected value:"+select_val);
+    var se = "se";
+    projectPlanningTable
+    .columns(5)
+     .search( ''+se+'')
+     .draw();
+});
  var projectPlanningTable =  $('#projectPlanningTable').DataTable({
-     "paging": true,
+	 "responsive": true,
+	 "paging": true,
      "lengthChange": false,
      "searching": true,
      "ordering": true,
@@ -19,22 +78,30 @@
 	                 { "data": "description" },
 	                 { "data": "remark" },
 	                 { "data": "week" },
-	                 { "data": "excpectedHours" }]
-     //'sDom': ''
+	                 { "data": "excpectedHours" },
+	                 {"data": "priority"}
+	                 ],
+	                 "columnDefs": [
+	                                {
+	                                    "targets": [ 3 ],
+	                                    "visible": false,
+	                                    "searchable": false
+	                                },
+	                                {
+	                                    "targets": [ 5 ],
+	                                    "visible": false
+	                                }
+	                            ],
+	                'sDom': ''
    });
- //DatepickerFrom
- $("#DatepickerFrom").datepicker({
-	  autoclose: true,
-	  format: "yyyy-mm-dd",
-     showWeek: true
- });
- $('#DatepickerFrom').datepicker().on('changeDate', function (event) {
+
+ /*$('#DatepickerFrom').datepicker().on('changeDate', function (event) {
 	    //$('#date-daily').change();
      projectPlanningTable
-     .columns(7)
+     .columns(6)
       .search( ''+$.datepicker.iso8601Week(event.date)+'')
       .draw();
-	});
+	});*/
 
  $('#projectPlanningTable_filter').on( 'keyup', function () {
 	 projectPlanningTable.search( $(this).val() ).draw();

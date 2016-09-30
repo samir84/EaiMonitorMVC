@@ -15,6 +15,15 @@ public class ProjectsPlanning implements Serializable{
 	private String remark;
 	private String progress;
 	private String week;
+	private String excpectedHours;
+	private String priority;
+	
+	public String getPriority() {
+		return priority;
+	}
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -75,7 +84,7 @@ public class ProjectsPlanning implements Serializable{
 	public void setExcpectedHours(String excpectedHours) {
 		this.excpectedHours = excpectedHours;
 	}
-	private String excpectedHours;
+	
 	
 	
 	

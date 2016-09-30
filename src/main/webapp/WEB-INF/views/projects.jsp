@@ -8,53 +8,49 @@
 		<section class="content-header">
       		<h1>
         		Dashboard
-        		<small>Project Managment</small>
+        		<small>Project Overview</small>
      		 </h1>
       		<ol class="breadcrumb">
         		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        		<li class="active"><i class="fa fa-cubes"></i>Project Managment</li>
+        		<li class="active"><i class="fa fa-cubes"></i>Projects Overview</li>
       		</ol>
     	</section>
 		<section class="content">
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="box">
-						<div class="box-header">
-							<header class="panel-heading">
-                      			All projects List
-                      			<span class="pull-right">
-                          			<button type="button" id="loading-btn" class="btn btn-warning btn-xs" onclick="refreshProjectPage()"><i class="fa fa-refresh"></i> Refresh</button>
-                          			<a href="#" class=" btn btn-success btn-xs"> Create New Project</a>
-                      			</span>
-                  			</header>
+						<div class="box-header with-border">
+							<i class="glyphicon glyphicon-tasks"></i>
+							<h3 class="box-title">Projects</h3>
+							<div class="box-tools pull-right">
+            					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            					<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+          					</div>
 						</div>
 						<div class="box-body">
-						
                              <div class="row">
-	<div class="col-sm-6">
-		<%-- <div id="example1_length" class="dataTables_length">
-		
-		<label>Show 
-		<form:select path="projectRecordsOptions" onchange="projectRecordselected()" class="form-control input-sm" aria-controls="example1" id="projectRecordsOptions" >
-   			<form:options items="${projectRecordsOptions}" />
-		</form:select> entries</label>
-		</div>  --%>
-	</div>
-	<c:url value="/projects.html/search" var="SearchProjectsUrl"/>
-	<div class="col-sm-6">
-		<!--  search Form -->
+                             	<div class="col-sm-4 pull-left">
+  									<span class="">
+                          				<button type="button" id="loading-btn" class="btn btn-warning btn-xs" onclick="refreshProjectPage()"><i class="fa fa-refresh"></i> Refresh</button>
+                          					<a href="#" class=" btn btn-success btn-xs">Create New Project</a>
+                      				</span>
+                      				<br></br>
+  								</div>
+								
+									<!--  search Form -->
+									<!--<div class="col-sm-3 pull-right">
 		<div class="dataTables_filter" id="example1_filter">
 			<div class="input-group input-group-sm">
-					<input id="searchProjectsText" name="searchTerm" type="text" placeholder="Search" class="form-control pull-right"  />
+					<input id="projectsTable_filter" name="searchTerm" type="text" placeholder="Search" class="form-control pull-right"  />
 						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit" onclick="projectFullTextSearch()"><i class="fa fa-search"></i></button>
+							<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 						</div>
 			</div>
-			</div>
+			</div>-->
 		<!-- Einde search form -->
 		</div>
-	</div>
-	         <div  id="projectTableWrapper">
+
+	         <div  id="projectTableWrapper" class="col-sm-12">
 				<table id ="projectsTable" class="table table-hover p-table">
                       <thead>
                       <tr>
@@ -66,56 +62,40 @@
                       </tr>
                       </thead>
                       <tbody>
-                      
                       <c:if test="${not empty projects}">
-                      	<c:forEach var="projectDetail" items="${projects}" >
-                      	<c:if test="${projectDetail.project.pcounter !=0 }">
+                      	<c:forEach var="projectDto" items="${projects}" >
                       	<tr>
                           <td class="p-name">
-                              <a href="${contextBase}project_details.html?id=${projectDetail.project.id}" >${projectDetail.project.pname}</a>
-                              <br>
-                              <small>${projectDetail.project.pkey}</small>
+                              <a href="${contextBase}project_details.html?id=${projectDto.id}" >${projectDto.projectName}</a>
                           </td>
-                          <c:if test="${ not empty projectDetail.assignees }">
+                          
                           <td class="p-team">
-                          <c:forEach var="assignee" items="${projectDetail.assignees}">
+                          <c:forEach var="assignee" items="${projectDto.assignees}">
                               <c:if test="${ not empty assignee}">
-                                <a href="#"><img alt="${assignee}" width="32" height="32" class="img-circle" src="" avatar="${assignee}"></a>
+                                <a href="#"><img id="assigneeImage" alt="${assignee}" width="32" height="32" class="img-circle" src="" avatar="${assignee}"></a>
                                </c:if>
                           </c:forEach>
                           </td>
-                          </c:if>
+                          
                           <td class="p-progress">
                               <div class="progress progress-xs">
-                                  <div style="width: ${projectDetail.progress};" class="progress-bar progress-bar-success"></div>
+                                  <div style="width: ${projectDto.projectProgress}%;" class="progress-bar progress-bar-success"></div>
                               </div>
-                              <small>${projectDetail.progress} Complete </small>
+                              <small>${projectDto.completedIssues} Complete </small>
                           </td>
                           <td>
-                              <span class="badge bg-red">${projectDetail.openIssues}</span>
+                              <span class="badge bg-blue">${projectDto.openIssues}</span>
                           </td>
                           <td>
-                          	<a href="http://vdelnnap46.ce.hsi.local:9080/browse/${projectDetail.project.pkey}" target="_blank"><i class="fa fa-link"></i> ${projectDetail.project.pkey} </a>
-                          	
+                          	<a href="http://vdelnnap46.ce.hsi.local:9080/browse/${projectDto.projectKey}" target="_blank"><i class="fa fa-link"></i>${projectDto.projectKey}</a>
                           </td>
                       </tr>
-                      </c:if>
                       	</c:forEach>
                       </c:if>
                      
                       
                       </tbody>
                   </table>
-                          <!-- Pagination -->
- <div class="row">                 
-	<div class="col-sm-5">
-		<div class="dataTables_info" id="example2_info" role="status" aria-live="polite">${totalProjectsMessage}</div>
-	</div>
-	<div class="col-sm-7">
-
-   	</div>
-		
-	</div>
 </div>
 <!-- Ein Pagination -->
 						</div>
@@ -124,5 +104,3 @@
 			</div>
               </section>
 			</div>
-		<script src="<c:url value="/resources/dist/js/letterAvatar.js"/>"></script>	
-		<script src="<c:url value="/resources/dist/js/projects.js"/>"></script>	

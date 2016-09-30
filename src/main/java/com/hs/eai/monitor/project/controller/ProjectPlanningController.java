@@ -1,5 +1,6 @@
 package com.hs.eai.monitor.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,9 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +26,7 @@ import org.springframework.web.client.RestTemplate;
 import com.hs.eai.monitor.project.model.ProjectsPlanning;
 import com.hs.eai.monitor.service.AppUtilsService;
 import com.hs.eai.monitor.service.RestClientService;
+import com.hs.eai.monitor.user.model.User;
 
 @Controller
 public class ProjectPlanningController {
@@ -31,7 +36,6 @@ public class ProjectPlanningController {
 	private static final String REST_URI_EAI_MONITOR_BASE = "restUriEaiMonitorWSBase";
 	private static final String REST_URI_ALL_PROJECT_PLANNING = "restUriEaiMonitorWSAllProjectsPlanning";
 	private static final String REST_URI_ALL_PROJECT_PLANNING_BY_ASSIGNEE ="restUriEaiMonitorAllProjectsPlanningByAssignee";
-	private static final String REST_URI_ALL_PROJECT_PLANNING_BY_ASSIGNEES ="restUriEaiMonitorAllProjectsPlanningByAssignees";
 
 	private static final String REST_URI_ALL_PROJECT_PLANNING_BY_WEEK_NUMBER ="restUriEaiMonitorAllProjectsPlanningByWeekNumber";
 	private static final String REST_URI_ALL_PROJECT_PLANNING_BY_ASSIGNEE_AND_WEEK_NUMBER ="restUriEaiMonitorAllProjectsPlanningByAssigneeAndWeekNumber";
@@ -64,6 +68,20 @@ public class ProjectPlanningController {
 				    
 				    List<ProjectsPlanning> projectsPlanningList = projectsPlanningResponse.getBody();
 				    ProjectsPlanning projectsPlanning = new ProjectsPlanning();
+				    List<User> listUsers = new ArrayList<User>();
+				    User user1 = new User();
+				    user1.setEmail("samir.elazzouzi");
+				    user1.setUsername("samir.elazzouzi");
+				    
+				    User user2 = new User();
+				    user2.setEmail("samir.elazzouzi");
+				    user2.setUsername("samir.elazzouzi");
+				    
+				    listUsers.add(user1);
+				    listUsers.add(user2);
+				    
+				    model.addAttribute("User",new User());
+				    model.addAttribute("listUsers",listUsers);
 					model.addAttribute("projectsPlanningList", projectsPlanningList);
 					model.addAttribute("projectsPlanning", projectsPlanning);
 			}catch(Exception ex){
@@ -95,5 +113,30 @@ public class ProjectPlanningController {
 			}
 			
 			return projectPlanningJson;
+		}
+		/**
+		 * Retrieve All ProjectsPlanning by assignees
+		 * 
+		 * @return
+		 */
+		@RequestMapping(value = "/planning/{assignee}/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public String listAllProjectsPlanningByAssignee(@PathVariable String assignee) {
+
+			String projectPlanningJson = null;
+			try {
+				RestTemplate restTemplate = new RestTemplate();
+				 String restUriEaiMonitorAllProjectsPlanningByAssignee  = restClientService.readUriFromProperty(REST_URI_ALL_PROJECT_PLANNING_BY_ASSIGNEE);
+				    
+				    ResponseEntity<List<ProjectsPlanning>> projectsPlanningResponse =
+				            restTemplate.exchange(restUriEaiMonitorAllProjectsPlanningByAssignee,
+				                        HttpMethod.GET, null, new ParameterizedTypeReference<List<ProjectsPlanning>>() {
+				                });
+				    
+				projectPlanningJson = mapper.writeValueAsString(projectsPlanningResponse.getBody());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return projectPlanningJson;
+
 		}
 }

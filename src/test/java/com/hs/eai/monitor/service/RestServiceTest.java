@@ -8,10 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.hs.eai.monitor.spring.PersistenceJPAConfig;
+import com.hs.eai.monitor.spring.HibernateConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { PersistenceJPAConfig.class }, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = { HibernateConfiguration.class }, loader = AnnotationConfigContextLoader.class)
 @WebAppConfiguration
 public class RestServiceTest {
 

@@ -1,7 +1,65 @@
+/*$(document).ready(function () {
+	
+	var data1 = new Array();
+	var data2 = new Array();
+	var data3 = new Array();
+	
+	var projectId = $("#projectdetailsId").attr("projectId");
+	console.log("projectId:"+projectId);
+	$.ajax({ 
+	    type: 'GET', 
+	    url: 'http://localhost:8080/eaimonitor/projectStatistics.json', 
+	    data: { "id": projectId }, 
+	    dataType: 'json',
+	    success: function (data) { 
+	    	for (var i = 0; i < data.length; i++) {
 
-//
-//createAreaChart();
-//});
+                //dataPoints.push({ label: data[i].source, y: data[i].sourcecount });
+	    		console.log("data i:"+data[i].totalTimeOrgEstimate);
+                data1.push(data[i].totalTimeOrgEstimate);
+	    		data2.push(data[i].totalTimeSpent);
+	    		data3.push(data[i].month);
+            }
+	    	
+	    }
+	});
+	
+	data1 = ["January", "February", "March", "April", "May", "June", "July"];
+	data2 = [65, 59, 80, 81, 56, 55, 40];
+	data3 =  [28, 48, 40, 19, 86, 27, 90];
+   console.log("data1:"+data1);
+   console.log("data2:"+data2);
+   console.log("data3:"+data3);
+	
+	var areaChartData1 = {
+			labels: data3,
+		      datasets: [
+		        {
+		          label: "TIMESPENT ",
+		          fillColor: "rgba(210, 214, 222, 1)",
+		          strokeColor: "rgba(210, 214, 222, 1)",
+		          pointColor: "rgba(210, 214, 222, 1)",
+		          pointStrokeColor: "#c1c7d1",
+		          pointHighlightFill: "#fff",
+		          pointHighlightStroke: "rgba(220,220,220,1)",
+		          data: data1
+		        },
+		        {
+		          label: "TIME ORIGINAL ESTIMATE",
+		          fillColor: "rgba(60,141,188,0.9)",
+		          strokeColor: "rgba(60,141,188,0.8)",
+		          pointColor: "#3b8bba",
+		          pointStrokeColor: "rgba(60,141,188,1)",
+		          pointHighlightFill: "#fff",
+		          pointHighlightStroke: "rgba(60,141,188,1)",
+		          data: data2
+		        }
+		      ]
+		    };
+	
+	console.log("areaChartData1:"+areaChartData1);
+	createAreaChart(areaChartData1);
+});	
  //--------------
     //- AREA CHART -
     //--------------
@@ -11,31 +69,6 @@ function createAreaChart(areaChartData){
     // This will get the first returned node in the jQuery collection.
     var areaChart = new Chart(areaChartCanvas);
 
-   /* var areaChartData = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
-      datasets: [
-        {
-          label: "Electronics",
-          fillColor: "rgba(210, 214, 222, 1)",
-          strokeColor: "rgba(210, 214, 222, 1)",
-          pointColor: "rgba(210, 214, 222, 1)",
-          pointStrokeColor: "#c1c7d1",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
-          data: [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-          label: "Digital Goods",
-          fillColor: "rgba(60,141,188,0.9)",
-          strokeColor: "rgba(60,141,188,0.8)",
-          pointColor: "#3b8bba",
-          pointStrokeColor: "rgba(60,141,188,1)",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [28, 48, 40, 19, 86, 27, 90]
-        }
-      ]
-    };*/
 
     var areaChartOptions = {
       //Boolean - If we should show the scale at all
@@ -77,135 +110,10 @@ function createAreaChart(areaChartData){
       multiTooltipTemplate:"<%= datasetLabel %> - <%= value %>"
     };
 
+    console.log("areaChartData:"+areaChartData);
     //Create the line chart
     areaChart.Line(areaChartData, areaChartOptions);
-	
-	
+
 }
 
-
-
-function showProjectDetailsStatistics(){
-	var doughnutData1 = [
-	     				{
-	     					value: 80,
-	     					color:"#26B99A",
-	     					highlight: "#FF5A5E",
-	     					label: "Green"
-	     				},
-	     				{
-	     					value: 20,
-	     					color: "#CCCCCC",
-	     					highlight: "#5AD3D1",
-	     					label: "Blue"
-	     				}
-	     			];
-	     				var doughnutData2 = [
-	     				{
-	     					value: 70,
-	     					color: "#CCCCCC",
-	     					highlight: "#FF5A5E",
-	     					label: "Blue"
-	     				},
-	     				{
-	     					value: 30,
-	     					color:"#26B99A",
-	     					highlight: "#5AD3D1",
-	     					label: "red"
-	     				}
-	     			];
-	     				var doughnutData3 = [
-	     				{
-	     					value: 12,
-	     					color: "#CCCCCC",
-	     					highlight: "#FF5A5E",
-	     					label: "Blue"
-	     				},
-	     				{
-	     					value: 88,
-	     					color:"#26B99A",
-	     					highlight: "#5AD3D1",
-	     					label: "Green"
-	     				}
-	     			];
-	     				var doughnutData4 = [
-	     				{
-	     					value: 100,
-	     					color: "#CCCCCC",
-	     					highlight: "#FF5A5E",
-	     					label: "Blue"
-	     				},
-	     				{
-	     					value: 10,
-	     					color:"#26B99A",
-	     					highlight: "#5AD3D1",
-	     					label: "Green"
-	     				}
-	     			];
-	     				var doughnutData5 = [
-	     				     				{
-	     				     					value: 100,
-	     				     					color:"#26B99A",
-	     				     					highlight: "#FF5A5E",
-	     				     					label: "Blue"
-	     				     				},
-	     				     				{
-	     				     					value: 0,
-	     				     					color: "#CCCCCC",
-	     				     					highlight: "#5AD3D1",
-	     				     					label: "Green"
-	     				     				}
-	     				     			];
- createDoughnutChart("#chart-area1",doughnutData1);
- createDoughnutChart("#chart-area2",doughnutData2);
- createDoughnutChart("#chart-area3",doughnutData3);
- createDoughnutChart("#chart-area4",doughnutData4);
- createDoughnutChart("#chart-area5",doughnutData5);
- 
-function createDoughnutChart(elementId,doughnutData){
-$(document).ready(function(){
-  
-  var ctx = $(elementId).get(0).getContext("2d");
-      //Variables global to the chart
-    var width = ctx.canvas.width;
-    var height = ctx.canvas.height;
-
-
-    //High pixel density displays - multiply the size of the canvas height/width by the device pixel ratio, then scale.
-   /* if (window.devicePixelRatio) {
-        ctx.canvas.style.width = width + "px";
-        ctx.canvas.style.height = height + "px";
-        ctx.canvas.height = height * window.devicePixelRatio;
-        ctx.canvas.width = width * window.devicePixelRatio;
-        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    }*/
-	
-  var myDoughnut = new Chart(ctx).Doughnut(doughnutData,{
-      animation:true,
-      responsive: true,
-      showTooltips: false,
-      percentageInnerCutout : 90,
-      segmentShowStroke : false,
-    onAnimationComplete: function() {
-      
-      var canvasWidthvar = $(elementId).width();
-      var canvasHeight = $(elementId).height();
-      var constant = 114;
-      var fontsize = (canvasHeight/constant).toFixed(2);
-      ctx.font="2.8em Verdana";
-      ctx.font=fontsize +"em Verdana";
-      ctx.textBaseline="middle"; 
-      var total = 0;
-      $.each(doughnutData,function() {
-          total += parseInt(this.value,10);
-      });
-      var tpercentage = ((doughnutData[0].value/total)*100).toFixed(2)+"%";
-      var textWidth = ctx.measureText(tpercentage).width;
-      
-       var txtPosx = Math.round((canvasWidthvar - textWidth)/2);
-        ctx.fillText(tpercentage, txtPosx, canvasHeight/2);
-    }
-  });
-});
-}
-}
+*/

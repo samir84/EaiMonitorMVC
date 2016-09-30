@@ -11,9 +11,60 @@
 		<put-attribute name="mainSidebar" value="/WEB-INF/views/templates/dashboard/mainSidebar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/templates/dashboard/body.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/templates/dashboard/footer.jsp" />
-		<put-list-attribute name="jsList" cascade="true">
-			<add-attribute value="resources/js/intranet.js" />
-		</put-list-attribute>
+		<put-list-attribute name="javascripts">
+			<!-- jQuery 2.2.0 -->
+        	<add-attribute value="/resources/plugins/jQuery/jQuery-2.2.0.min.js" />
+        	<!-- jQuery UI 1.11.4 -->
+        	<add-attribute value="/resources/jquery-ui/1.11.4/jquery-ui.min.js" />
+			<!-- jQuery Validate -->
+			<add-attribute value="/resources/plugins/ajax/jquery.validate/1.7/jquery.validate.min.js" />
+        	<!-- Bootstrap 3.3.6 -->
+        	<add-attribute value="/resources/bootstrap/js/bootstrap.min.js" />
+			<!-- Morris.js charts -->
+			<add-attribute value="/resources/plugins/morris/morris.js" />
+			<!-- DataTables -->
+			<add-attribute value="/resources/plugins/datatables/jquery.dataTables.min.js" />
+			<add-attribute value="/resources/plugins/datatables/dataTables.bootstrap.min.js" />
+			<!-- datepicker -->
+			<add-attribute value="/resources/plugins/datepicker/bootstrap-datepicker.js" />
+			<!-- Select2 -->
+			<add-attribute value="/resources/plugins/select2/select2.full.min.js" />
+			<!-- Moment js -->
+			<add-attribute value="/resources/plugins/moment/moment.min.js" />
+			<!-- fullCalendar 2.2.5 -->
+			<add-attribute value="/resources/plugins/fullcalendar/fullcalendar2.js" />
+			<!-- Letter Avatar  -->
+			<add-attribute value="/resources/dist/js/letterAvatar.js" />
+			<!-- FastClick -->
+			<add-attribute value="/resources/plugins/fastclick/fastclick.js" />
+			<!-- Slimscroll -->
+			<add-attribute value="/resources/plugins/slimScroll/jquery.slimscroll.min.js" />
+			<!-- AdminLTE App-->
+			<add-attribute value="/resources/dist/js/app.min.js" />
+    	</put-list-attribute>
+    	<put-list-attribute name="javascriptsSpecific"/>
+    	<put-list-attribute name="stylesheets">
+        	<!-- Bootstrap 3.3.6 -->
+        	<add-attribute value="/resources/bootstrap/css/bootstrap.min.css" />
+        	<!-- Font Awesome -->
+        	<add-attribute value="/resources/font-awesome/4.6.3/css/font-awesome.min.css" />
+			<!-- DataTables -->
+			<add-attribute value="/resources/plugins/datatables/dataTables.bootstrap.css" />
+			<!-- Theme style -->
+			<add-attribute value="/resources/dist/css/AdminLTE.css" />
+			<!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+			<add-attribute value="/resources/dist/css/skins/_all-skins.min.css" />
+			<!-- iCheck -->
+			<add-attribute value="/resources/plugins/iCheck/flat/blue.css" />
+			<!-- Morris chart -->
+			<add-attribute value="/resources/plugins/morris/morris.css" />
+			<!-- Date Picker -->
+			<add-attribute value="/resources/plugins/datepicker/datepicker3.css" />
+			<!--  Select2 -->
+			<add-attribute value="/resources/plugins/select2/select2.min.css" />
+    	</put-list-attribute>
+    	<put-list-attribute name="stylesheetsSpecific"></put-list-attribute>
+    	
 	</definition>
 	<definition name="LandingTemplate"
 		template="/WEB-INF/views/templates/landing/LandingTemplate.jsp">
@@ -27,37 +78,17 @@
 			value="/WEB-INF/views/templates/landing/register.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/views/templates/landing/footer.jsp" />
-		<put-list-attribute name="jsList" cascade="true">
-			<add-attribute value="resources/js/intranet.js" />
-		</put-list-attribute>
+
 	</definition>
 
-	<definition name="LandingTemplate"
-		template="/WEB-INF/views/templates/landing/LandingTemplate.jsp">
-
-		<put-attribute name="title" value="Intranet homepage" />
-		<put-attribute name="header"
-			value="/WEB-INF/views/templates/landing/header.jsp" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/templates/landing/body.jsp" />
-		<put-attribute name="register"
-			value="/WEB-INF/views/templates/landing/register.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/views/templates/landing/footer.jsp" />
-		<put-list-attribute name="jsList" cascade="true">
-			<add-attribute value="resources/js/intranet.js" />
-		</put-list-attribute>
-	</definition>
 	<definition name="SimplePageTemplate"
 		template="/WEB-INF/views/templates/simplePages/SimplePageTemplate.jsp">
 
 		
 		<put-attribute name="body"
-			value="" />
+			value="/WEB-INF/views/templates/landing/body.jsp" />
 		
-		<put-list-attribute name="jsList" cascade="true">
-			<add-attribute value="resources/js/intranet.js" />
-		</put-list-attribute>
+		
 	</definition>
 
 </tiles-definitions>
