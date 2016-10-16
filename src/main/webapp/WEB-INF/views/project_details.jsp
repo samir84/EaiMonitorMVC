@@ -87,16 +87,26 @@
                   </div>
                   <!-- /.description-block -->
                 </div>
+                <div class="col-sm-2 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-green">
+                    <i class="fa fa-caret-up"></i>${projectStatistics.percentCompletedIssues}</span>
+                    <h5 class="description-header">${projectdetails.completedIssues }</h5>
+                    <span class="description-text">Completed ISSUES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
 				  </div>
 				 
 			
 				</div>
 				
 			</div>
+			
 			<div class="box">
 			<div class="box-header with-border">
-              <h3 class="box-title">TIMEORIGINALESTIMATE vs TIMESPENT</h3>
-
+			<i class="fa fa-area-chart"></i> <h3 class="box-title">TIMEORIGINAL vs TIMESPENT</h3></li>
+           
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -115,9 +125,46 @@
               </div>
             </div>
 			<div class="box-body">
-              <div class="chart">
-                <canvas id="areaChart" style="height:250px"></canvas>
+			<input type="hidden" id="chosenAreaId" value="" />
+			<c:url value="/TimeOrgVsTimeSpentByPeriodeAndProject.json" var="timeOrVSTimeSpentUrl" />
+			<c:url value="/projectStatistics.json" var="projectStatisticsUrl" />
+			<div class="nav-tabs-custom" id="tabs" target_url="${timeOrVSTimeSpentUrl}">
+            <ul class="nav nav-tabs pull-left" id="timeorg_timespent" >  
+  				<li class="pull-left header">
+  				<li id="selectedTab" class="active">
+  					<a href="#last_year" id="last_year" data-toggle="tab" aria-expanded="true" target_url="${projectStatisticsUrl}">
+  						Last year
+  					</a>
+  				</li>
+            </ul>
+            <div class="pull-right">
+              <div class="form-group">
+                <div class="input-group">
+                  <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+                    <span>
+                      <i class="fa fa-calendar"></i> Periode range picker
+                    </span>
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                </div>
               </div>
+            </div>
+          </div>
+			  
+			  <div class="tab-content">
+              		<div class="tab-pane active" id="last_year">
+               				<div class="chart">
+                				<canvas id="last_year_areaChart" class="chart" style="height:250px"></canvas>
+              				</div>
+              		</div>
+              <!-- /.tab-pane -->
+              		<!--  <div class="tab-pane" id="last_month">
+                      <canvas id="last_month_areaChart" style="height:250px"></canvas>
+              		</div>-->
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+              
             </div>
 			</div>
 			</div>
@@ -345,4 +392,5 @@
 							
 
 		
-</div>					
+</div>
+				

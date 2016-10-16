@@ -1,20 +1,19 @@
 $(document).ready(function () {
 
-	var projectPlanningTable =  $('#projectsTable').DataTable({
+	var projectsTable =  $('#projectsTable').DataTable({
+		 
 		"responsive": true,
-	     "ordering": true,
-	     "info": true,
-	     "autoWidth": true
-	});
-	/*var projectPlanningTable =  $('#projectsTable').DataTable({
-		 "responsive": true,
 		 "paging": true,
 	     "lengthChange": false,
 	     "searching": true,
 	     "ordering": true,
 	     "info": true,
-	     "autoWidth": false
-	     /*"ajax": {
+	     "autoWidth": false,
+	     //"bDestroy": true,
+	     //"bJQueryUI": true,
+	     //"sDom": 'lrtip',
+	     "sDom": 'rtp',
+	     "ajax": {
 		     "url": "projects.json",
 		     "type": "GET",
 		     "dataSrc": ''
@@ -30,10 +29,10 @@ $(document).ready(function () {
 		                 { "data": "openIssues" }
 		                 
 		                 ]
-		                'sDom': ''
-	   });*/
+
+	   });
 	 $('#projectsTable_filter input').on( 'keyup', function () {
-		 projectPlanningTable.search( $(this).val() ).draw();
+		 projectsTable.search( $(this).val() ).draw();
 		 
 		 $( ".p-team #assigneeImage" ).each(function( index ) {
 			 var assignee =$( this ).attr("alt");

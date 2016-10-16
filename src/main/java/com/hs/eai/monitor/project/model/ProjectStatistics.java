@@ -17,8 +17,17 @@ public class ProjectStatistics implements Serializable {
 	private String percentResolved;
 	private String percentClosed;
 	private String inprogressIssues;
-
+	private String percentCompletedIssues;
 	
+
+	public String getPercentCompletedIssues() {
+		return percentCompletedIssues;
+	}
+
+	public void setPercentCompletedIssues(String percentCompletedIssues) {
+		this.percentCompletedIssues = percentCompletedIssues;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -40,7 +49,6 @@ public class ProjectStatistics implements Serializable {
 	}
 
 	public String getPercentOpenIssues() {
-		System.out.println("percentOpenIssues:" + percentOpenIssues);
 		return percentOpenIssues;
 	}
 

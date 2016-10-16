@@ -9295,7 +9295,7 @@ var eventsCopy = events.slice().reverse(); //copy and reverse so we can modify w
 
                 currentDayStart.add(1, 'days');
             }
-if(eventsCopy.length>0){
+if(eventsCopy){
 var sunHours = 0;
 var monHours = 0;
 var tueHours = 0;
@@ -9330,6 +9330,7 @@ var satHours = 0;
 			    this.el.find(".fc-footer.fc-sat").html(satHours);
 				
 				var totalHoursWeek =(sunHours+monHours+tueHours+wedHours+thuHours+friHours+satHours);
+				console.log("totalHoursWeek:"+totalHoursWeek);
 				 this.el.find(".col-md-1.totalHoursWeek").html(totalHoursWeek);
 }
 		this.updateHeight(); // must compensate for events that overflow the row

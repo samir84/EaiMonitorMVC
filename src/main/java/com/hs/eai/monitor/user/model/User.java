@@ -1,5 +1,6 @@
 package com.hs.eai.monitor.user.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
@@ -26,14 +27,14 @@ import org.hibernate.search.annotations.Indexed;
 @Entity
 @Indexed
 @Table(name = "users")
-@NamedQueries({ @NamedQuery(name = "User.findAll", query = "from User u"),
-	@NamedQuery(name = "User.findByUsername", query = "from User u where u.username = :username"),
-	@NamedQuery(name = "User.findByEmail", query = "from User u where u.email = :email"),
-	@NamedQuery(name = "User.findByRolename", query = "from User u where u.roles in (roles)")
+@NamedQueries({ @NamedQuery(name = "User.findAll", query = "select u from User u"),
+	@NamedQuery(name = "User.findByUsername", query = "select u from User u where u.username = :username"),
+	@NamedQuery(name = "User.findByEmail", query = "select u from User u where u.email = :email"),
+	@NamedQuery(name = "User.findByRolename", query = "select u from User u where u.roles in (roles)")
 	
 
 })
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue

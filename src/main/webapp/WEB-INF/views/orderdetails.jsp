@@ -68,11 +68,18 @@
       		<label class="col-sm-4 col-form-label" >Status</label>
       		<div class="col-sm-4">
       		<c:if test="${ not empty orderHeader.orderHdr.orderStatus }">
-      		<span class="label label-warning">${orderHeader.orderHdr.orderStatus}</span>
+      		<c:if test ="${orderHeader.orderHdr.orderStatus.code == 'RECEIVED_FROM_ONEWEB'}">
+      			<span class="label label-succes">${orderHeader.orderHdr.orderStatus.description}</span>
+      			<span class="label label-succes">succes</span>
       		</c:if>
-      		<c:if test="${ !not empty orderHeader.orderHdr.orderStatus }">
-      		<span class="label label-danger">Denied</span>
       		</c:if>
+      		<c:if test="${ not empty orderHeader.orderHdr.orderStatus }">
+      		<c:if test = "${orderHeader.orderHdr.orderStatus.code ne 'RECEIVED_FROM_ONEWEB'}">
+      			<span class="label label-warning">${orderHeader.orderHdr.orderStatus.description}</span>
+      			<span class="label label-warning">Denied</span>
+      		</c:if>
+      		</c:if>
+      		
       		</div>
    		 </div>
    		 <div class="form-group row">

@@ -12,3 +12,7 @@
     background: #ffffff none repeat scroll 0 0 !important;
     color: inherit;
 }
+ul > li > a > span.glyphicon-remove:hover {
+    background-color: red;
+    background-image: none;
+}

@@ -11,7 +11,7 @@
 
 <c:url value="/" var="contextBase" />
 	<section class="content-header"><h1>Dashboard<small>TimeSheets</small></h1>
-      		<ol class="breadcrumb"><li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li><li class="active"><i class="fa fa-cubes"></i>Time Managment</li></ol>
+      		<ol class="breadcrumb"><li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li><li class="active"><i class="fa fa-cubes"></i> TimeSheets</li></ol>
     </section>
 	<section class="content">
 	    <div id="Notifications" style="display:none">
@@ -163,4 +163,3 @@
 	</section>
 
 </div>
- <script src="<c:url value="/resources/dist/js/timesheets.js"/>"></script>

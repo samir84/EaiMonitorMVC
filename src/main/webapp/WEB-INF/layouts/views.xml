@@ -62,42 +62,95 @@
 		
 		<put-list-attribute name="javascriptsSpecific">
 			<add-attribute value="/resources/plugins/chartjs/Chart.min.js" />
-			<add-attribute value="/resources/dist/js/projectStatistics.js" />
-			
+			<add-attribute value="/resources/dist/js/project_details_statistics.js" />
 		</put-list-attribute> 
-		
+		<put-list-attribute name="stylesheetsSpecific">
+ 			 <!-- Projects css -->
+		      <add-attribute value="/resources/dist/css/project.css" />
+		</put-list-attribute>
 	</definition>
 
 	<definition name="projectsPlanning" extends="DashboardTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/projects_planning.jsp" />
+		<put-attribute name="title" value="Planning Overview" />
+		<put-attribute name="body" value="/WEB-INF/views/projectsPlanning.jsp" />
+		<put-list-attribute name="javascriptsSpecific">
+			<add-attribute value="/resources/dist/js/projectsPlanning.js" />
+		</put-list-attribute> 
+		<put-list-attribute name="stylesheetsSpecific">
+		</put-list-attribute>
 	</definition>
 	
 	<definition name="orders" extends="DashboardTemplate">
+		<put-attribute name="title" value="Orders Overview" />
 		<put-attribute name="body" value="/WEB-INF/views/orders.jsp" />
+		<put-list-attribute name="javascriptsSpecific">
+			<add-attribute value="/resources/dist/js/orders.js" />
+		</put-list-attribute> 
+		<put-list-attribute name="stylesheetsSpecific">
+			<add-attribute value="/resources/dist/css/orders.css" />
+		</put-list-attribute>
 	</definition>
 	
 	<definition name="orderdetails" extends="DashboardTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/orderdetails.jsp" />
 	</definition>
 	
-	<definition name="ordersTable" extends="SimplePageTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/ordersTable.jsp" />
-	</definition>
-	
 	<definition name="jobs" extends="DashboardTemplate">
+		<put-attribute name="title" value="Jobs Overview" />
 		<put-attribute name="body" value="/WEB-INF/views/jobs.jsp" />
+		<put-list-attribute name="stylesheetsSpecific">
+ 			<!-- Jobs css -->
+		     <add-attribute value="/resources/dist/css/jobs.css" />
+		</put-list-attribute>
+		 <put-list-attribute name="javascriptsSpecific">
+			<add-attribute value="/resources/dist/js/jobs.js" />
+		</put-list-attribute> 
 	</definition>
 	
 	<definition name="jobdetails" extends="DashboardTemplate">
+		<put-attribute name="title" value="Job Details" />
 		<put-attribute name="body" value="/WEB-INF/views/jobdetails.jsp" />
+		<put-list-attribute name="stylesheetsSpecific">
+ 			<!-- Jobs css -->
+		     <add-attribute value="/resources/dist/css/jobs.css" />
+		</put-list-attribute>
+		 <put-list-attribute name="javascriptsSpecific">
+			<add-attribute value="/resources/dist/js/job_details.js" />
+		</put-list-attribute> 
 	</definition>
-	
-	<definition name="jobsTable" extends="SimplePageTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/jobsTable.jsp" />
-	</definition>
+
 	
 	<definition name="timesheets" extends="DashboardTemplate">
+		<put-attribute name="title" value="Timesheets Overview" />
 		<put-attribute name="body" value="/WEB-INF/views/timesheets.jsp" />
+		<put-list-attribute name="stylesheetsSpecific">
+		
+		</put-list-attribute>
+		 <put-list-attribute name="javascriptsSpecific">
+		 <!-- fullCalendar 2.2.5 -->
+			<!--<add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js" />-->
+			<add-attribute value="/resources//plugins/fullcalendar/fullcalendar2.js"/>
+		 	<!-- timesheets -->
+			<add-attribute value="/resources/dist/js/timesheets.js" />
+		</put-list-attribute> 
 	</definition>
+	
+	<definition name="logging" extends="DashboardTemplate">
+	 	<put-attribute name="title" value="Logging Overview" />
+		<put-attribute name="body" value="/WEB-INF/views/logging.jsp" />
+		<put-list-attribute name="stylesheetsSpecific">
+ 			<!-- logging css -->
+		     <add-attribute value="/resources/dist/css/logging.css" />
+		</put-list-attribute>
+		 <put-list-attribute name="javascriptsSpecific">
+		 	<!-- highcharts -->
+		    <add-attribute value="/resources/plugins/highcharts/highcharts.js" />
+		    <add-attribute value="/resources/plugins/highcharts/modules/exporting.js" />
+		    <add-attribute value="/resources/dist/js/logging_statistics.js" />
+			<add-attribute value="/resources/dist/js/logging.js" />
+		</put-list-attribute> 
+	</definition>
+	
+
 	
 </tiles-definitions>

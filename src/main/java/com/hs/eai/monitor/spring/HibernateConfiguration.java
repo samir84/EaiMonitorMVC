@@ -37,7 +37,7 @@ public class HibernateConfiguration {
 	private static final String ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
 	private static final String HIBERNATE_SEARCH_DEFAULT_INDEX_BASE = "hibernate.search.default.indexBase";
 	private static final String HIBERNATE_SEARCH_DEFAULT_DIRECTORY_PROVIDER ="hibernate.search.default.directory_provider";
-	
+	private static final String HIBERNATE_ENABLE_LAZY_LOAD_NO_TRANS ="hibernate.enable_lazy_load_no_trans";
 	
 	
 	
@@ -73,7 +73,7 @@ public class HibernateConfiguration {
 		properties.put(HIBERNATE_SHOW_SQL, env.getRequiredProperty(HIBERNATE_SHOW_SQL));
 		properties.put(HIBERNATE_DEFAULT_SCHEMA,env.getRequiredProperty(HIBERNATE_DEFAULT_SCHEMA));
 		properties.put(HIBERNATE_HBM2DLL_AUTO, env.getRequiredProperty(HIBERNATE_HBM2DLL_AUTO));
-		
+		properties.put(HIBERNATE_ENABLE_LAZY_LOAD_NO_TRANS,env.getRequiredProperty(HIBERNATE_ENABLE_LAZY_LOAD_NO_TRANS));
 		//properties.put(CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty(CURRENT_SESSION_CONTEXT_CLASS));
 		return properties;
 	}

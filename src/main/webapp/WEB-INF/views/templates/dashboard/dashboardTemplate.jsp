@@ -4,6 +4,7 @@
 <tiles:importAttribute name="javascripts"/>
 <tiles:importAttribute name="javascriptsSpecific"/>
 <tiles:importAttribute name="stylesheets"/> 
+<tiles:importAttribute name="stylesheetsSpecific"/> 
 
 <!DOCTYPE html>
 <html>
@@ -19,12 +20,16 @@
 
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
 
-<!-- stylesheets -->
+<!-- stylesheets comun-->
     <c:forEach var="css" items="${stylesheets}">
         <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
     </c:forEach>
+<!-- end stylesheets Comun-->
+<!-- stylesheets comun-->
+    <c:forEach var="cssSpec" items="${stylesheetsSpecific}">
+        <link rel="stylesheet" type="text/css" href="<c:url value="${cssSpec}"/>">
+    </c:forEach>
 <!-- end stylesheets Page Specific-->
-
 
 </head>
 

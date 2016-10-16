@@ -1,7 +1,10 @@
+$(document).ready(function() {
 
- var urlFeed = "/eaimonitor/timesheets.json";
 
-  initializeTimeSheets(urlFeed);
+	
+	 var urlFeed = "/eaimonitor/timesheets.json";
+	initializeTimeSheets(urlFeed);
+  
   
 
   $("#newTimeEntryButton").on('click', function(event) {
@@ -152,13 +155,7 @@ $( "#myDatepicker" ).datepicker({
 	autoclose: true,
 	  format: "yyyy-mm-dd"
 	});
-//Timepicker
-$(".timepicker").timepicker({
-  showInputs: false,
-  use24hours: false,
-  showMeridian: false,
-  maxHour: 10,
-});
+
 
 function initializeTimeSheets(urlFeed) {
 
@@ -261,4 +258,7 @@ function editWeeklyReturn(calEvent){
 	$( "#addWeeklyReturnForm" ).attr("action",updateUrl);
 }
 
+
+	
+});
 

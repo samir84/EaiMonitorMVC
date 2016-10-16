@@ -27,6 +27,7 @@ import com.hs.eai.monitor.project.model.ProjectsPlanning;
 import com.hs.eai.monitor.service.AppUtilsService;
 import com.hs.eai.monitor.service.RestClientService;
 import com.hs.eai.monitor.user.model.User;
+import com.hs.eai.monitor.user.service.UserService;
 
 @Controller
 public class ProjectPlanningController {
@@ -39,6 +40,9 @@ public class ProjectPlanningController {
 
 	private static final String REST_URI_ALL_PROJECT_PLANNING_BY_WEEK_NUMBER ="restUriEaiMonitorAllProjectsPlanningByWeekNumber";
 	private static final String REST_URI_ALL_PROJECT_PLANNING_BY_ASSIGNEE_AND_WEEK_NUMBER ="restUriEaiMonitorAllProjectsPlanningByAssigneeAndWeekNumber";
+	
+	@Autowired
+	UserService userService;
 	
 	@Autowired
 	RestClientService restClientService;
@@ -57,7 +61,7 @@ public class ProjectPlanningController {
 		@RequestMapping(value = "/planning", method = RequestMethod.GET)
 		public String showProjectPlanning(Model model){
 			
-			try{
+			/*try{
 				RestTemplate restTemplate = new RestTemplate();
 				 String restUriEaiMonitorAllProjectsPlanning  = restClientService.readUriFromProperty(REST_URI_ALL_PROJECT_PLANNING);
 				    
@@ -68,36 +72,20 @@ public class ProjectPlanningController {
 				    
 				    List<ProjectsPlanning> projectsPlanningList = projectsPlanningResponse.getBody();
 				    ProjectsPlanning projectsPlanning = new ProjectsPlanning();
-				    List<User> listUsers = new ArrayList<User>();
-				    User user1 = new User();
-				    user1.setEmail("samir.elazzouzi");
-				    user1.setUsername("samir.elazzouzi");
-				    
-				    User user2 = new User();
-				    user2.setEmail("samir.elazzouzi");
-				    user2.setUsername("samir.elazzouzi");
-				    
-				    listUsers.add(user1);
-				    listUsers.add(user2);
-				    
-				    model.addAttribute("User",new User());
+				    List<User> listUsers = userService.findAll();
+				    System.out.println("listUsers:"+listUsers.size());
 				    model.addAttribute("listUsers",listUsers);
 					model.addAttribute("projectsPlanningList", projectsPlanningList);
 					model.addAttribute("projectsPlanning", projectsPlanning);
 			}catch(Exception ex){
 				
-			}
-			
-			
+			}*/
 			return "projectsPlanning";
 		}
 		@RequestMapping(value = "/planning.json", method = RequestMethod.GET)
 		@ResponseBody
 		public String getProjectPlanning(@RequestParam (required=false) String anything){
-			
-			
 			String projectPlanningJson = null;
-			
 			try {
 				RestTemplate restTemplate = new RestTemplate();
 				 String restUriEaiMonitorAllProjectsPlanning  = restClientService.readUriFromProperty(REST_URI_ALL_PROJECT_PLANNING);
@@ -138,5 +126,21 @@ public class ProjectPlanningController {
 			}
 			return projectPlanningJson;
 
+		}
+		@RequestMapping(value = "/users.json", method = RequestMethod.GET)
+		@ResponseBody
+		public String getUsers(){
+			
+			ObjectMapper mapper = new ObjectMapper();
+			String usersJson = null;
+			
+			try {
+				List<User> users = userService.findAll();    
+				usersJson = mapper.writeValueAsString(users);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return usersJson;
 		}
 }

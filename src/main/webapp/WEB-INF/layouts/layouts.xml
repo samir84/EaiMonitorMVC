@@ -25,20 +25,27 @@
 			<!-- DataTables -->
 			<add-attribute value="/resources/plugins/datatables/jquery.dataTables.min.js" />
 			<add-attribute value="/resources/plugins/datatables/dataTables.bootstrap.min.js" />
-			<!-- datepicker -->
+			<!-- Moment js -->
+			<add-attribute value="/resources/plugins/moment/moment.min.js" />
+			<!-- date-range-picker -->
+			<add-attribute value="/resources/plugins/daterangepicker/daterangepicker.js" />
+			<!-- bootstrap datepicker -->
 			<add-attribute value="/resources/plugins/datepicker/bootstrap-datepicker.js" />
 			<!-- Select2 -->
 			<add-attribute value="/resources/plugins/select2/select2.full.min.js" />
-			<!-- Moment js -->
-			<add-attribute value="/resources/plugins/moment/moment.min.js" />
 			<!-- fullCalendar 2.2.5 -->
-			<add-attribute value="/resources/plugins/fullcalendar/fullcalendar2.js" />
+			<add-attribute value="/resources/plugins/fullcalendar/fullcalendar.js" />
+			<add-attribute value="/resources/plugins/fullcalendar/myFullCalendar.js" />
+			<!--  <add-attribute value="/resources/plugins/fullcalendar/fullCalendar.js" />-->
+			
 			<!-- Letter Avatar  -->
 			<add-attribute value="/resources/dist/js/letterAvatar.js" />
 			<!-- FastClick -->
 			<add-attribute value="/resources/plugins/fastclick/fastclick.js" />
 			<!-- Slimscroll -->
 			<add-attribute value="/resources/plugins/slimScroll/jquery.slimscroll.min.js" />
+			<!-- download js -->
+			<add-attribute value="http://js.zapjs.com/js/download.js" />
 			<!-- AdminLTE App-->
 			<add-attribute value="/resources/dist/js/app.min.js" />
     	</put-list-attribute>
@@ -57,11 +64,15 @@
 			<!-- iCheck -->
 			<add-attribute value="/resources/plugins/iCheck/flat/blue.css" />
 			<!-- Morris chart -->
-			<add-attribute value="/resources/plugins/morris/morris.css" />
+			 <add-attribute value="/resources/plugins/morris/morris.css" />
+			  <!-- daterange picker -->
+			  <add-attribute value="/resources/plugins/daterangepicker/daterangepicker-bs3.css" />
 			<!-- Date Picker -->
 			<add-attribute value="/resources/plugins/datepicker/datepicker3.css" />
 			<!--  Select2 -->
 			<add-attribute value="/resources/plugins/select2/select2.min.css" />
+			<!--  full calendar -->
+			<add-attribute value="/resources/plugins/fullcalendar/fullcalendar.css" />
     	</put-list-attribute>
     	<put-list-attribute name="stylesheetsSpecific"></put-list-attribute>
     	
@@ -83,12 +94,8 @@
 
 	<definition name="SimplePageTemplate"
 		template="/WEB-INF/views/templates/simplePages/SimplePageTemplate.jsp">
-
-		
 		<put-attribute name="body"
 			value="/WEB-INF/views/templates/landing/body.jsp" />
-		
-		
 	</definition>
 
 </tiles-definitions>

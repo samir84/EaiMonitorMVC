@@ -1,8 +1,10 @@
 package com.hs.eai.monitor.user.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="roles")
 @NamedQueries({ @NamedQuery(name = "Role.findByName", query = "from Role r where r.name = :name")
 })
-public class Role {
+public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -22,7 +24,7 @@ public class Role {
 
 	private String name;
 
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
     private List<User> users;
 
 	public Integer getId() {

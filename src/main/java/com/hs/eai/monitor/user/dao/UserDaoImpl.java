@@ -86,8 +86,16 @@ public class UserDaoImpl implements UserDao {
   
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return (List<User>) getSession().createCriteria(User.class);
+
+		List<User> users = null;
+		try{
+			Query query = getSession().getNamedQuery("User.findAll");
+			users = query.list();
+		}catch(Exception ex){
+			logger.error(ex.getMessage());
+			ex.printStackTrace();
+		}
+		return users;
 	}
 
 	@Override

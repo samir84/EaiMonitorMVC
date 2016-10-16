@@ -40,12 +40,13 @@
             <span class="label label-primary pull-right">4</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<c:url value="/orders.html" />"><i class="fa fa-history"></i>Order Overview</a></li>
+            <li><a href="<c:url value="/orders.html" />"><i class="fa fa-history"></i>Orders Overview</a></li>
+            <li><a href="<c:url value="/order_history.html" />"><i class="fa fa-history"></i>Order History</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="ion ion-clipboard"></i>
+            <i class="fa fa-tasks"></i>
             <span>Jobs</span>
             <i class="fa fa-angle-left pull-right"></i>
           </a>
@@ -59,33 +60,29 @@
             <small class="label pull-right bg-green">new</small>
           </a>
         </li>
-        <li class="treeview">
-          <a >
-            <i class="fa fa-laptop"></i>
-            <span>Project</span>
-            <i class="fa fa-angle-left pull-right"></i>
+        <li>
+          <a href="<c:url value="/projects.html" />">
+          	<i class="fa fa-laptop"></i>
+            <i class="fa fa-angle-left pull-right"></i> <span>Projects</span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="<c:url value="/projects.html" />"><i class="fa fa-circle-o"></i> Alle Projects</a></li>
-          </ul>
-          <ul class="treeview-menu">
-            <li><a href="<c:url value="/myprojects.html" />"><i class="fa fa-circle-o"></i> My Projects</a></li>
-            <li><a href="<c:url value="/planning.html" />"><i class="fa fa-circle-o"></i> My Planning</a></li>
-          </ul>
-          
-           <ul class="treeview-menu">
-            <li><a href="<c:url value="/timesheets.html"/>"><i class="fa fa-circle-o"></i> Timesheets</a></li>
-          </ul>
+        </li>
+        <li>
+         <a href="<c:url value="/timesheets.html"/>">
+          	<i class="fa fa-calendar"></i>
+            <i class="fa fa-angle-left pull-right"></i> <span>Timesheets</span>
+          </a>
+        </li>
+        <li>
+         <a href="<c:url value="/planning.html" />">
+          	<i class="glyphicon glyphicon-time"></i>
+            <i class="fa fa-angle-left pull-right"></i> <span>Planning</span>
+          </a>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="<c:url value="/logging.html" />">
             <i class="fa fa-laptop"></i>
             <span>Logging</span>
-            <i class="fa fa-angle-left pull-right"></i>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> General</a></li>
-          </ul>
         </li>
       </ul>
     </section>
