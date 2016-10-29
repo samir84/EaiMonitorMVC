@@ -29,7 +29,7 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
-          <a href="#">
+          <a href="/">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
         </li>
@@ -40,7 +40,7 @@
             <span class="label label-primary pull-right">4</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<c:url value="/orders.html" />"><i class="fa fa-history"></i>Orders Overview</a></li>
+            <li><a href="<c:url value="/order/list.html" />"><i class="fa fa-history"></i>Orders Overview</a></li>
             <li><a href="<c:url value="/order_history.html" />"><i class="fa fa-history"></i>Order History</a></li>
           </ul>
         </li>

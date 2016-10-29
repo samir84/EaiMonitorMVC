@@ -19,7 +19,7 @@
 <meta content="Henry Schein Eai monitor" name="description">
 
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
-
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/dist/img/favicon.ico"/> " />
 <!-- stylesheets comun-->
     <c:forEach var="css" items="${stylesheets}">
         <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">

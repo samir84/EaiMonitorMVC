@@ -1,9 +1,48 @@
-
-function initializeorder_listTable(){
+function initializeOrderListTable(){
 	var fromDate = moment().format('YYYY-MM-DD');
 	var toDate = moment().format('YYYY-MM-DD');
-
-	reloadorder_listTable(fromDate,toDate);
+	order_listTable = reloadOrderListTable(fromDate,toDate);	
+}
+function updateOrderStatusOverviewByOrderDate(fromDate,toDate,periode){
+	
+	var getUrl ="statistics/OrderStatusOverviewByOrderDate.json?fromDate="+fromDate+"&toDate="+toDate;
+	var jqxhr = $.getJSON( getUrl, function() {
+		  
+		})
+		  .done(function(data ) {
+		    console.log( "second success:"+data.totalOrders );
+		    $(".info-box.bg-green .info-box-number").text(data.totalOrdersSucceed);
+		    $(".info-box.bg-green .progress .progress-bar").attr("style" ,"width:"+data.progressOrdersSucceed+"");
+		    $(".info-box.bg-green .progress-description").text(data.progressOrdersSucceed+" Increase in "+periode+" Days");
+		    
+		    $(".info-box.bg-red .info-box-number").text(data.totalOrdersFailled);
+		    $(".info-box.bg-red .progress .progress-bar").attr("style" ,"width:"+data.progressOrdersFailled+"");
+		    $(".info-box.bg-red .progress-description").text(data.progressOrdersFailled+" Increase in "+periode+" Days");
+		    
+		    
+		    $(".info-box.bg-yellow .info-box-number").text(data.totalOrdersPending);
+		    $(".info-box.bg-yellow .progress .progress-bar").attr("style" ,"width:"+data.progressOrdersPending+"");
+		    $(".info-box.bg-yellow .progress-description").text(data.progressOrdersPending+" Increase in "+periode+" Days");
+		    
+		    $(".info-box.bg-desactive .info-box-number").text(data.totalOrdersCancelled);
+		    $(".info-box.bg-desactive .progress .progress-bar").attr("style" ,"width:"+data.progressOrdersCancelled+"");
+		    $(".info-box.bg-desactive .progress-description").text(data.progressOrdersCancelled+" Increase in "+periode+" Days");
+		    
+		    
+		  })
+		  .fail(function(data) {
+		    console.log( "error: "+data );
+		  })
+		  .always(function(data) {
+		    console.log( "complete: "+data );
+		  });
+		 
+		// Perform other work here ...
+		 
+		// Set another completion function for the request above
+		jqxhr.complete(function(data) {
+		  //console.log( "second complete:"+data );
+		});
 }
 function getSalesOrganizationByCode(code){
 	
@@ -24,9 +63,10 @@ function downloadOrderXml(){
 	var file_name= orderNumber+".xml";
 	download(orderxml, file_name, "text/xml");
 }
-/* Formatting function for row details - modify as you need */
+
 function format ( d ) {
     // `d` is the original data object for the row
+	console.log(d);
 	var transactionStatusCode = d.transactionStatus.code;
 	var notificationText = d.transactionStatus.description;
 	var notification_alert_css;
@@ -161,11 +201,44 @@ function format ( d ) {
 	
 	$("#row_details #notification .alert").attr("class",notification_alert_css);
     $("#row_details #notification h4").text(notificationText);
-    var $row_details = $("#row_details").html();
-	var htmlContent = $row_details;
-	
-	
-	return htmlContent;
+    $('a[href=\'#tab_1\']').attr("href","#tab_1_"+d.id);
+    $('a[href=\'#tab_2\']').attr("href","#tab_2_"+d.id);
+    $('a[href=\'#tab_3\']').attr("href","#tab_3_"+d.id);
+    $("#tab_1").attr("id","tab_1_"+d.id);
+    $("#tab_2").attr("id","tab_2_"+d.id);
+    $("#tab_3").attr("id","tab_3_"+d.id);
+    
+    $("#orderxml").html(d.messageContent);
+    $("#orderxml").attr("orderNumber",d.orderNumber);
+    var xmlDoc = $.parseXML( d.messageContent ); 
+    var $xml = $(xmlDoc);
+    var $address = $xml.find("Address");
+
+    $address.each(function(){
+        var name = $(this).find('name').text();
+        var delivery_address = $(this).find('address1').text();
+        var billing_address = $(this).find('address2').text();
+        var telefoon = $(this).find('telefon').text();
+        $("#order_detail_custom_info").append("<strong>Customer Name </strong>"+name+"<br>"+
+            "<strong>Delivery Address </strong>"+delivery_address+"<br>"+
+            "<strong>Billing Address </strong>"+billing_address+"<br>"+
+            "<strong>Telephone Number </strong>"+telefoon+"<br>");
+
+    });
+
+    var $user = $xml.find("user");
+    	
+    $user.each(function(){
+    	 var email = $(this).find('email').text();
+    	 $("#order_detail_custom_info").append("<strong>Email Address </strong>&nbsp;"+email);
+    });
+    $("#row_details").attr("style","display:block");
+	   $('html, body').animate({
+	        scrollTop: $("#row_details").offset().top
+	     }, 300);
+    //var $row_details = $("#row_details").html();
+    
+	//return $row_details;
 }
 function getSystem(systeemId){
 	var systeem ;
@@ -188,11 +261,11 @@ function getSystem(systeemId){
 }
 
 
-function reloadorder_listTable(fromDate,toDate){
+function reloadOrderListTable(fromDate,toDate){
 	
 	var OrderDetails_url = $("#order_listTable").attr("OrderDetails_url");
 
-	order_listTable =  $('#order_listTable').DataTable({
+	var order_listTable =  $('#order_listTable').DataTable({
 		
 		 "responsive": true,
 		 "paging": true,
@@ -215,7 +288,7 @@ function reloadorder_listTable(fromDate,toDate){
 		               	  "className": 'openRow',
 		               	  "orderable": false,
 		               	  "data":           '',
-		               	  "defaultContent": '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button>'
+		               	  "defaultContent": '<button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button>'
 		               	 },
 		                 { "data": "orderNumber" },
 		                 { "data": "transactionStatus.description" },
@@ -288,25 +361,31 @@ function reloadorder_listTable(fromDate,toDate){
 		order_listTable.search( this.value ).draw();
 	} );
 	$('#order_listTable tbody').on('click', 'td.openRow', function () {
+		
+		
 	    var tr = $(this).closest('tr');
 	    var td = $(this).closest('td');
 	    var row = order_listTable.row( tr );
+	    
 
 	    if ( row.child.isShown() ) {
 	        // This row is already open - close it
 	        row.child.hide();
-	        td.html('<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button>');
+	        td.html('<button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button>');
 	    }
 	    else {
 	        // Open this row
-	        row.child( format(row.data()) ).show();
-	        td.html('<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-eye-close"></span></button>');
+	        //row.child( format(row.data()) ).show();
+	    	format(row.data());
+	        td.html('<button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-eye-close"></span></button>');
 	        
 	        
 	    }
-	    //initializeTabs();
+		//e.preventDefault();
+		
 	    
-});
+	});
+	return order_listTable;
 }
 
 function initializeDateRangePicker(){
@@ -327,58 +406,30 @@ function initializeDateRangePicker(){
               var periode = moment().diff(start, 'days');
               var fromDate = start.format('YYYY-MM-DD');
               var toDate = end.format('YYYY-MM-DD');
-              var weekNumber = "W"+moment(start).isoWeek();
-             // order_listTable.columns(7).search(start).draw();
+
               var existing_table = $("#order_listTable").dataTable();
               if (existing_table != undefined)
               {
                   existing_table.fnClearTable();
                   existing_table.fnDestroy();
               }
-          	reloadorder_listTable(fromDate,toDate);
-
-
+              $('#order_listTable tbody').off( 'click', 'td.openRow');
+              reloadOrderListTable(fromDate,toDate);
+              updateOrderStatusOverviewByOrderDate(fromDate,toDate,periode);
             }
         );
 }
-/*function initializeTabs(){
-	 $(".nav.nav-tabs a").click(function(event) {
-	        event.preventDefault();
-	        $(this).parent().addClass("active");
-	        $(this).parent().siblings().removeClass("active");
-	        var tab = $(this).attr("href");
-	        console.log($(tab));
-	        console.log($(tab).html());
-	        $(".tab-content").parent().siblings().removeClass("active");
-	        $(tab).addClass("active");
-	    });
-}*/
+
 
 $(document).ready(function() {
 
 	var order_listTable;
-	$("#tabs").tabs();
-	initializeorder_listTable();	
+	
+	initializeOrderListTable();
+	
 	initializeDateRangePicker();
 	
-	$('#order_listTable tbody').on('click', 'td.openRow', function () {
-	    var tr = $(this).closest('tr');
-	    var td = $(this).closest('td');
-	    var row = order_listTable.row( tr );
-
-	    if ( row.child.isShown() ) {
-	        // This row is already open - close it
-	        row.child.hide();
-	        td.html('<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button>');
-	    }
-	    else {
-	        // Open this row
-	        row.child( format(row.data()) ).show();
-	        td.html('<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-eye-close"></span></button>');
-	        
-	        
-	    }
-});
+	//$("#tabs").tabs();
 	$('[data-toggle="popover"]').popover();
 	
 

@@ -18,14 +18,16 @@ import javax.persistence.Table;
 })
 public class Role implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	private Integer id;
 
 	private String name;
-
-	@ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
-    private List<User> users;
 
 	public Integer getId() {
 		return id;
@@ -43,13 +45,6 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
 
 	
 	

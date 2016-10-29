@@ -46,6 +46,11 @@ public class UserController {
 	private Environment env;
 
 	
+	@RequestMapping(value = "/user/profile", method = RequestMethod.GET)
+	public String showUserProfile(Model model) {
+		
+			return "profile";
+	}
 	/*@RequestMapping(value = "/users.json", method = RequestMethod.GET)
 	@ResponseBody
 	public String getUsers(){

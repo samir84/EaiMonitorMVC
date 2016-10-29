@@ -57,29 +57,10 @@ public class ProjectPlanningController {
 		
 	}
 	
-	//projectsPlanning
 		@RequestMapping(value = "/planning", method = RequestMethod.GET)
 		public String showProjectPlanning(Model model){
 			
-			/*try{
-				RestTemplate restTemplate = new RestTemplate();
-				 String restUriEaiMonitorAllProjectsPlanning  = restClientService.readUriFromProperty(REST_URI_ALL_PROJECT_PLANNING);
-				    
-				    ResponseEntity<List<ProjectsPlanning>> projectsPlanningResponse =
-				            restTemplate.exchange(restUriEaiMonitorAllProjectsPlanning,
-				                        HttpMethod.GET, null, new ParameterizedTypeReference<List<ProjectsPlanning>>() {
-				                });
-				    
-				    List<ProjectsPlanning> projectsPlanningList = projectsPlanningResponse.getBody();
-				    ProjectsPlanning projectsPlanning = new ProjectsPlanning();
-				    List<User> listUsers = userService.findAll();
-				    System.out.println("listUsers:"+listUsers.size());
-				    model.addAttribute("listUsers",listUsers);
-					model.addAttribute("projectsPlanningList", projectsPlanningList);
-					model.addAttribute("projectsPlanning", projectsPlanning);
-			}catch(Exception ex){
-				
-			}*/
+			
 			return "projectsPlanning";
 		}
 		@RequestMapping(value = "/planning.json", method = RequestMethod.GET)
@@ -127,6 +108,11 @@ public class ProjectPlanningController {
 			return projectPlanningJson;
 
 		}
+		
+		/**
+		 * Find users used for planning, in this case find alle users
+		 * @return
+		 */
 		@RequestMapping(value = "/users.json", method = RequestMethod.GET)
 		@ResponseBody
 		public String getUsers(){

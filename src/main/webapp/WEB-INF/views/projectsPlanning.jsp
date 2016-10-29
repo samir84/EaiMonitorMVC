@@ -13,8 +13,7 @@
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active"><i class="fa fa-cubes"></i>Project Managment</li>
-			<li class="active"><i class="fa fa-cubes"></i>Project Planning</li>
+			<li class="active"><a href="#"><i class="fa fa-cubes"></i>Project Planning</a></li>
 		</ol>
 	</section>
 	<section class="content">

@@ -11,8 +11,8 @@
         		<small>Project Overview</small>
      		 </h1>
       		<ol class="breadcrumb">
-        		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        		<li class="active"><i class="fa fa-cubes"></i>Projects Overview</li>
+        		<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        		<li class="active"><a href="/projects.html"><i class="fa fa-cubes"></i>Projects Overview</a></li>
       		</ol>
     	</section>
 		<section class="content">
